@@ -208,6 +208,7 @@ public class Practice {
      * @return true if the sums are equal, false otherwise
      */
     public static boolean sumMatch(BinaryTreeNode<Integer> root, ListNode<Integer> head) {
+
         return false;
     }
 
@@ -220,7 +221,16 @@ public class Practice {
      * @return the sum of all the tree's values
      */
     public static int nbSum(TreeNode<Integer> root) {
-        return 0;
+
+        if (root == null) {
+            return 0;
+        }
+        int sum = root.data;
+        for (TreeNode<Integer> child : root.children) {
+            sum += nbSum(child);
+        }
+
+        return sum;
     }
 
     /**
@@ -254,7 +264,17 @@ public class Practice {
      * @return the count of nodes that do not have siblings, EXCLUDING THE ROOT
      */
     public static int onlyChildCount(TreeNode<?> root) {
-        return 0;
+        if (root == null) {
+            return 0;
+        }
+        int count = 0;
+        if (root.children.size() == 1) {
+            count++;
+        }
+        for (TreeNode<?> child : root.children) {
+            count += onlyChildCount(child);
+        }
+        return count;
     }
 
     /**
